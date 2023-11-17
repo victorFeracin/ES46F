@@ -36,4 +36,25 @@ export default class UsuarioController {
       }).showToast();
     }
   };
+
+  async logout () {
+    try {
+      await signOut(auth);
+      window.location.replace("index.html");
+    } catch (error) {
+      Toastify({
+        text: `${errorMessage}`,
+        duration: 3000,
+        close: true,
+        gravity: "bottom",
+        position: "right",
+        stopOnFocus: true,
+        style: {
+          background: "linear-gradient(to right, #c60b0b, #cd3544)",
+          fontFamily: ("Averia Libre", "sans-serif"),
+        },
+  
+      }).showToast();
+    }
+  }
 }
