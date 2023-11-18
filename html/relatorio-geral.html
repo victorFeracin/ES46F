@@ -37,33 +37,8 @@
       <div id="filter-container">
         <label for="radioFilter">Ver por:</label>
         <div class="input-radio-container">
-          <label><input type="radio" name="radioFilter" value="1" checked>Familia</label>
-          <label><input type="radio" name="radioFilter" value="0" onclick="changeFilter()">Geral</label>
-        </div>
-      </div>
-    </div>
-
-    <div class="card-container">
-      <div class="card-title-container">
-        <h2>Família de Lorem Ipsum</h2>
-      </div>
-
-      <div class="card-content-container">
-        <div class="card-content">
-          <p>Integrante do ELLP: <span style="color: #F68D2E">Lorem Ipsum</span></p>
-          <p>Número de Integrantes: <span style="color: #F68D2E">04</span></p>
-          <p>Renda familiar mensal: <span style="color: #F68D2E">R$ 5500,00</span></p>
-          <p>Nº total de computadores: <span style="color: #F68D2E">01</span></p>
-          <p>Nº total de celulares: <span style="color: #F68D2E">04</span></p>
-          <p>Possui acesso à internet: <span style="color: #F68D2E">Sim</span></p>
-        </div>
-        <div class="card-btns-container">
-          <a class="card-btn" href="editar.html">
-            <i class="material-icons" style='color: #007BCC'>edit</i>
-          </a>
-          <button class="card-btn" onclick="openPopUp()">
-            <i class="material-icons" style='color: #F36A6A'>delete</i>
-          </button>
+          <label><input type="radio" name="radioFilter" value="1" onclick="changeFilter()"">Familia</label>
+          <label><input type="radio" name="radioFilter" value="0" checked>Geral</label>
         </div>
       </div>
     </div>
@@ -72,7 +47,7 @@
   </section>
   
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-  <script src="../js/relatorio.js"></script>
+  <script src="../js/relatorio-geral.js"></script>
   <script type="module" src="../js/logout.js"></script>
 </body>
 </html>

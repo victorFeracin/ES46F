@@ -94,7 +94,7 @@ header {
   color: #FFFFFF;
 }
 
-.home-container {
+.home-container, .relatorio-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -324,4 +324,65 @@ header {
 #btn-salvar:hover {
   cursor: pointer;
   background-color: #f7790a;
+}
+
+/*RELATORIO*/
+#search-filter-container {
+  display: flex;
+  width: 1200px;
+  justify-content: center;
+  gap: 30px;
+  margin: 60px auto;
+}
+
+#search-container {
+  border: 3px solid #007BCC;
+  border-radius: 15px;
+  width: 80%;
+}
+
+#form-search {
+  display: flex;
+  align-items: center;
+}
+
+#button-search {
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 8px 5px;
+  transition: .3s;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+#button-search:hover {
+  background-color: #d4d4d4;
+}
+
+#input-search {
+  border: none;
+  outline: none;
+  width: 100%;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 8px 5px
+}
+
+#filter-container {
+  display: flex;
+  align-items: center;
+  width: 20%;
+}
+
+#filter-container label {
+  min-width: 70px;
+}
+
+
+.input-radio-container {
+  display: flex;
+
 }
