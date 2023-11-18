@@ -68,11 +68,22 @@
       </div>
     </div>
 
-    
   </section>
+
+  <!--PopUp-->
+  <div id="card-delete-popup-container">
+    <div id="card-delete-popup-content">
+      <p>Tem certeza que deseja apagar?</p>
+      <div id="card-delete-popup-btns-container">
+        <button id="btn-delete-confirm">Sim</button>
+        <button id="btn-delete-cancel" onclick="closePopUp()">Cancelar</button>
+      </div>
+    </div>
+  </div>
   
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="../js/relatorio.js"></script>
+  <script src="../js/popup.js"></script>
   <script type="module" src="../js/logout.js"></script>
 </body>
 </html>
