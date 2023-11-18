@@ -1,11 +1,4 @@
 export default class Usuario {
-  // constructor(uid, email, senha, ativo) {
-  //   this._uid = uid;
-  //   this._email = email;
-  //   this._senha = senha;
-  //   this._ativo = ativo;
-  // }
-
   constructor() {
     this._uid = "";
     this._email = "";
