@@ -46,7 +46,6 @@
 }
 
 #btn-login:hover {
-
   cursor: pointer;
   background-color: #f7790a;
 }
@@ -227,4 +226,102 @@ header {
 
 #btn-delete-cancel:hover {
   background-color: #04609e;
+}
+
+/*CADASTRO*/
+.cadastro-editar-container {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 80px auto 0 auto;
+}
+
+.back-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.back-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 5px;
+  transition: .3s;
+}
+
+.back-container:hover {
+  background-color: #d4d4d4;
+}
+
+.title-container {
+  margin: 0 auto;
+}
+
+.title-container h1 {
+  color: #F68D2E;
+  font-size: 1.5rem;
+}
+
+.cadastro-editar-form-container {
+  background-color: #007BCC;
+  border-radius: 10px;
+}
+
+.label-input-container {
+  display: flex;
+  padding: 30px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+  color: #FFFFFF;
+}
+
+.input-row, .input-radio-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-radio-container {
+  width: 350px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-radio-container input {
+  margin-right: 5px;
+}
+
+.input-row input{
+  height: 40px;
+  width: 350px;
+  border: none;
+  border-radius: 15px;
+}
+
+#btn-salvar {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  margin: 60px auto 30px auto;
+  color: #FFFF;
+  background-color: #F68D2E;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 30px;
+  width: 250px;
+  font-weight: bold;
+  transition: .3s;
+}
+
+#btn-salvar:hover {
+  cursor: pointer;
+  background-color: #f7790a;
 }
