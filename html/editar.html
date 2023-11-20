@@ -6,78 +6,86 @@
   <link rel="stylesheet" type="text/css" href="../css/reset.css">
   <link rel="stylesheet" type="text/css" href="../css/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <title>Gerenciamento de Famílas ELLP - EDITAR</title>
 </head>
 <body>
-  <header>
-    <nav class="menu">
-      <ul class="menu-list">
-        <a class="menu-list-item" href="home.html">HOME</a>
-        <a class="menu-list-item" href="cadastro.html">CADASTRO</a>
-        <a class="menu-list-item" href="relatorio.html">RELATÓRIO</a>
-      </ul>
-    </nav>
-    <div id="btn-sair-container">
-      <i class="material-icons icon-sair" style='color: #FFFFFF'>logout</i>
-      <span>Sair</span>
-    </div>
-  </header>
+  <div id="loading-screen">
+    <img src="../assets/loading-gif.gif" alt="Loading">
+    <h2>Carregando...</h2>
+  </div>
 
-  <section class="cadastro-editar-container">
-    <div class="back-title-container">
-      <a class="back-container" href="home.html">
-        <i class="material-icons" style='color: #F68D2E; font-size: 30px;'>arrow_back</i>
-      </a>
-      <div class="title-container">
-        <h1>Editar</h1>
+  <div id="authorized-content">
+    <header>
+      <nav class="menu">
+        <ul class="menu-list">
+          <a class="menu-list-item" href="home.html">HOME</a>
+          <a class="menu-list-item" href="cadastro.html">CADASTRO</a>
+          <a class="menu-list-item" href="relatorio.html">RELATÓRIO</a>
+        </ul>
+      </nav>
+      <div id="btn-sair-container">
+        <i class="material-icons icon-sair" style='color: #FFFFFF'>logout</i>
+        <span>Sair</span>
       </div>
-    </div>
+    </header>
 
-    <div class="cadastro-editar-form-container">
-      <form id="form-editar">
-        <div class="label-input-container">
-          <div class="input-row">
-            <label for="integrante">Integrante do ELLP:</label>
-            <input type="text" id="integrante">
-          </div>
-          
-          <div class="input-row">
-            <label for="nrIntegrantes">Número de integrantes:</label>
-            <input type="number" min="1" id="nrIntegrantes">
-          </div>
+    <section class="cadastro-editar-container">
+      <div class="back-title-container">
+        <a class="back-container" href="home.html">
+          <i class="material-icons" style='color: #F68D2E; font-size: 30px;'>arrow_back</i>
+        </a>
+        <div class="title-container">
+          <h1>Editar</h1>
+        </div>
+      </div>
 
-          <div class="input-row">
-            <label for="rendaMensal">Renda familiar mensal:</label>
-            <input type="text" oninput="formatValue(this)" id="rendaMensal">
-          </div>
-
-          <div class="input-row">
-            <label for="nrComputadores">Número total de computadores:</label>
-            <input type="number" min="1" id="nrComputadores">
-          </div>
-          
-          <div class="input-row">
-            <label for="nrCelulares">Número total de celulares:</label>
-            <input type="number" min="1" id="nrCelulares">
-          </div>
-
-          <div class="input-radio-row">
-            <label for="acessoInternet">Possui acesso à internet:</label>
-            <div class="input-radio-container">
-              <label><input type="radio" name="acessoInternet" value="1" checked>Sim</label>
-              <label><input type="radio" name="acessoInternet" value="0">Não</label>
+      <div class="cadastro-editar-form-container">
+        <form id="form-editar">
+          <div class="label-input-container">
+            <div class="input-row">
+              <label for="integrante">Integrante do ELLP:</label>
+              <input type="text" id="integrante" required>
             </div>
-          </div>
-        </div> 
 
-        <button type=submit id="btn-salvar">Salvar</button>
-      </form>
-    </div>
+            <div class="input-row">
+              <label for="nrIntegrantes">Número de integrantes:</label>
+              <input type="number" min="1" id="nrIntegrantes" required>
+            </div>
 
-  </section>
-  
+            <div class="input-row">
+              <label for="rendaMensal">Renda familiar mensal:</label>
+              <input type="text" oninput="formatValue(this)" id="rendaMensal" required>
+            </div>
+
+            <div class="input-row">
+              <label for="nrComputadores">Número total de computadores:</label>
+              <input type="number" min="0" id="nrComputadores" required>
+            </div>
+
+            <div class="input-row">
+              <label for="nrCelulares">Número total de celulares:</label>
+              <input type="number" min="0" id="nrCelulares" required>
+            </div>
+
+            <div class="input-radio-row">
+              <label for="acessoInternet">Possui acesso à internet:</label>
+              <div class="input-radio-container">
+                <label><input type="radio" name="acessoInternet" value="1" checked>Sim</label>
+                <label><input type="radio" name="acessoInternet" value="0">Não</label>
+              </div>
+            </div>
+          </div> 
+
+          <button type=submit id="btn-salvar">Salvar</button>
+        </form>
+      </div>
+
+    </section>
+  </div>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script type="module" src="../js/editar.js"></script>
+  <script type="module" src='../js/authentication.js'></script>
   <script type="module" src="../js/logout.js"></script>
 </body>
 </html>

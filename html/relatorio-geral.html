@@ -6,39 +6,48 @@
   <link rel="stylesheet" type="text/css" href="../css/reset.css">
   <link rel="stylesheet" type="text/css" href="../css/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <title>Gerenciamento de Famílas ELLP - RELATÓRIO</title>
 </head>
 <body>
-  <header>
-    <nav class="menu">
-      <ul class="menu-list">
-        <a class="menu-list-item" href="home.html">HOME</a>
-        <a class="menu-list-item" href="cadastro.html">CADASTRO</a>
-        <a class="menu-list-item-selected" style="color: #F68D2E">RELATÓRIO</a>
-      </ul>
-    </nav>
-    <div id="btn-sair-container">
-      <i class="material-icons icon-sair" style='color: #FFFFFF'>logout</i>
-      <span>Sair</span>
-    </div>
-  </header>
+  <div id="loading-screen">
+    <img src="../assets/loading-gif.gif" alt="Loading">
+    <h2>Carregando...</h2>
+  </div>
 
-  <section class="relatorio-container">
-    <div id="search-filter-container">
-      <div id="filter-container">
-        <label for="radioFilter">Ver por:</label>
-        <div class="input-radio-container">
-          <label><input type="radio" name="radioFilter" value="1" onclick="changeFilter()"">Familia</label>
-          <label><input type="radio" name="radioFilter" value="0" checked>Geral</label>
+  <div id="authorized-content">
+    <header>
+      <nav class="menu">
+        <ul class="menu-list">
+          <a class="menu-list-item" href="home.html">HOME</a>
+          <a class="menu-list-item" href="cadastro.html">CADASTRO</a>
+          <a class="menu-list-item-selected" style="color: #F68D2E">RELATÓRIO</a>
+        </ul>
+      </nav>
+      <div id="btn-sair-container">
+        <i class="material-icons icon-sair" style='color: #FFFFFF'>logout</i>
+        <span>Sair</span>
+      </div>
+    </header>
+  
+    <section class="relatorio-container">
+      <div id="search-filter-container">
+        <div id="filter-container">
+          <label for="radioFilter">Ver por:</label>
+          <div class="input-radio-container">
+            <label><input type="radio" name="radioFilter" value="1" onclick="changeFilter()"">Familia</label>
+            <label><input type="radio" name="radioFilter" value="0" checked>Geral</label>
+          </div>
         </div>
       </div>
-    </div>
-
     
-  </section>
-  
+      
+    </section>
+  </div>
+
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="../js/relatorio-geral.js"></script>
+  <script type="module" src='../js/authentication.js'></script>
   <script type="module" src="../js/logout.js"></script>
 </body>
 </html>

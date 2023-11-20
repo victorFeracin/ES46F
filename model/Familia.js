@@ -1,6 +1,6 @@
 export default class Familia {
-  constructor(id, nrIntegrantes, renda, nrComputadores, nrCelulares, acessoInternet) {
-    this._id = id;
+  constructor(integranteEllp, nrIntegrantes, renda, nrComputadores, nrCelulares, acessoInternet) {
+    this._integranteEllp = integranteEllp;
     this._nrIntegrantes = nrIntegrantes;
     this._renda = renda;
     this._nrComputadores = nrComputadores;
@@ -11,6 +11,10 @@ export default class Familia {
   // Getters
   get id() {
       return this._id;
+  }
+
+  get integranteEllp() {
+    return this._integranteEllp;
   }
 
   get nrIntegrantes() {
@@ -36,6 +40,10 @@ export default class Familia {
   // Setters
   set id(id) {
       this._id = id;
+  }
+
+  set integranteEllp(integranteEllp) {
+    this._integranteEllp = integranteEllp;
   }
 
   set nrIntegrantes(nrIntegrantes) {

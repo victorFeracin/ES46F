@@ -6,65 +6,54 @@
   <link rel="stylesheet" type="text/css" href="../css/reset.css">
   <link rel="stylesheet" type="text/css" href="../css/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <title>Gerenciamento de Famílas ELLP - HOME</title>
 </head>
 <body>
-  <header>
-    <nav class="menu">
-      <ul class="menu-list">
-        <a class="menu-list-item-selected" style="color: #F68D2E">HOME</a>
-        <a class="menu-list-item" href="cadastro.html">CADASTRO</a>
-        <a class="menu-list-item" href="relatorio.html">RELATÓRIO</a>
-      </ul>
-    </nav>
-    <div id="btn-sair-container">
-      <i class="material-icons icon-sair" style='color: #FFFFFF'>logout</i>
-      <span>Sair</span>
-    </div>
-  </header>
-
-  <section class="home-container">
-    <a id="btn-cadastro" href="cadastro.html">Novo Cadastro</a>
-
-    <div class="card-container">
-      <div class="card-title-container">
-        <h2>Família de Lorem Ipsum</h2>
-      </div>
-
-      <div class="card-content-container">
-        <div class="card-content">
-          <p>Integrante do ELLP: <span style="color: #F68D2E">Lorem Ipsum</span></p>
-          <p>Número de Integrantes: <span style="color: #F68D2E">04</span></p>
-          <p>Renda familiar mensal: <span style="color: #F68D2E">R$ 5500,00</span></p>
-          <p>Nº total de computadores: <span style="color: #F68D2E">01</span></p>
-          <p>Nº total de celulares: <span style="color: #F68D2E">04</span></p>
-          <p>Possui acesso à internet: <span style="color: #F68D2E">Sim</span></p>
-        </div>
-        <div class="card-btns-container">
-          <a class="card-btn" href="editar.html">
-            <i class="material-icons" style='color: #007BCC'>edit</i>
-          </a>
-          <button class="card-btn" onclick="openPopUp()">
-            <i class="material-icons" style='color: #F36A6A'>delete</i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!--PopUp-->
-  <div id="card-delete-popup-container">
-    <div id="card-delete-popup-content">
-      <p>Tem certeza que deseja apagar?</p>
-      <div id="card-delete-popup-btns-container">
-        <button id="btn-delete-confirm">Sim</button>
-        <button id="btn-delete-cancel" onclick="closePopUp()">Cancelar</button>
-      </div>
-    </div>
+  <div id="loading-screen">
+    <img src="../assets/loading-gif.gif" alt="Loading">
+    <h2>Carregando...</h2>
   </div>
-  
+
+  <div id="authorized-content">
+    <header>
+      <nav class="menu">
+        <ul class="menu-list">
+          <a class="menu-list-item-selected" style="color: #F68D2E">HOME</a>
+          <a class="menu-list-item" href="cadastro.html">CADASTRO</a>
+          <a class="menu-list-item" href="relatorio.html">RELATÓRIO</a>
+        </ul>
+      </nav>
+      <div id="btn-sair-container">
+        <i class="material-icons icon-sair" style='color: #FFFFFF'>logout</i>
+        <span>Sair</span>
+      </div>
+    </header>
+
+    <section class="home-container">
+      <a id="btn-cadastro" href="cadastro.html">Novo Cadastro</a>
+
+      <div id="card-list">
+
+      </div>
+
+    </section>
+
+    <!--PopUp-->
+    <div id="card-delete-popup-container">
+      <div id="card-delete-popup-content">
+        <p>Tem certeza que deseja apagar?</p>
+        <div id="card-delete-popup-btns-container">
+          <button id="btn-delete-confirm">Sim</button>
+          <button id="btn-delete-cancel" onclick="closePopUp()">Cancelar</button>
+        </div>
+      </div>
+    </div>
+    
+  </div>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script type="module" src="../js/home.js"></script>
+  <script type="module" src='../js/authentication.js'></script>
   <script src="../js/popup.js"></script>
   <script type="module" src="../js/logout.js"></script>
 </body>

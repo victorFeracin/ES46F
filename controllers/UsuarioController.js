@@ -3,11 +3,9 @@ import translateError from "../js/translate-error.js";
 import { app } from "../js/firebase-config.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 import { getFirestore, collection, getDocs, addDoc, query, where, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-storage.js"
 
 const auth = getAuth(app);
 const db = getFirestore(app);
-const storage = getStorage(app);
 
 export default class UsuarioController {
   async login (email, senha) {
