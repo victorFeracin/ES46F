@@ -1,50 +1,55 @@
 import Familia from "../model/Familia.js";
 import translateError from "../js/translate-error.js";
 import { app } from "../js/firebase-config.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
-import { getFirestore, collection, getDocs, addDoc, query, where, orderBy, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+import { getFirestore, collection, getDocs, getDoc, addDoc, query, where, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
 
 export default class FamiliaController {
 
-  async createFamilia (integranteEllp, nrIntegrantes, renda, nrComputadores, nrCelulares, acessoInternet, userUid) {
+  async createFamilia (integranteEllp, nrIntegrantes, renda, nrComputadores, nrCelulares, acessoInternet) {
     try {
-      const familia = new Familia(integranteEllp, nrIntegrantes, renda, nrComputadores, nrCelulares, acessoInternet);
-      const familiaDoc = {
-        integrante_ellp: familia.integranteEllp,
-        nr_integrantes: familia.nrIntegrantes,
-        renda: familia.renda,
-        nr_computadores: familia.nrComputadores,
-        nr_celulares: familia.nrCelulares,
-        acesso_internet: familia.acessoInternet,
-        user_uid: userUid
-      };
+      onAuthStateChanged(auth, async (user) => {
+        const userUid = user.uid;
+        if(acessoInternet === "1") {
+          acessoInternet = true;
+        } else {
+          acessoInternet = false;
+        }
 
-      if(familiaDoc.acesso_internet === "1") {
-        familiaDoc.acesso_internet = true;
-      } else {
-        familiaDoc.acesso_internet = false;
-      }
+        const familia = new Familia(integranteEllp, nrIntegrantes, renda, nrComputadores, nrCelulares, acessoInternet, userUid);
+        const familiaDoc = {
+          integrante_ellp: familia.integranteEllp,
+          nr_integrantes: familia.nrIntegrantes,
+          renda: familia.renda,
+          nr_computadores: familia.nrComputadores,
+          nr_celulares: familia.nrCelulares,
+          acesso_internet: familia.acessoInternet,
+          user_uid: familia.userUid
+        };
   
-      await addDoc(collection(db, 'familia'), familiaDoc);
-      Toastify({
-        text: "Cadastro realizado com sucesso!",
-        duration: 3000,
-        close: true,
-        gravity: "bottom",
-        position: "right",
-        stopOnFocus: true,
-        style: {
-          background: "linear-gradient(to right, #06d455, #4bd17e)",
-          fontFamily: ("Averia Libre", "sans-serif"),
-        },
-    
-      }).showToast();
-      setTimeout(() => {
-        window.location.href = "./home.html";
-      }, 1500);
+        await addDoc(collection(db, 'familia'), familiaDoc);
+        
+        Toastify({
+          text: "Cadastro realizado com sucesso!",
+          duration: 3000,
+          close: true,
+          gravity: "bottom",
+          position: "right",
+          stopOnFocus: true,
+          style: {
+            background: "linear-gradient(to right, #06d455, #4bd17e)",
+            fontFamily: ("Averia Libre", "sans-serif"),
+          },
+      
+        }).showToast();
+        setTimeout(() => {
+          window.location.href = "./home.html";
+        }, 1500);
+      });
+
     } catch(error) {
       const errorMessage = translateError(error.code);
       Toastify({
@@ -109,5 +114,125 @@ export default class FamiliaController {
     } 
   }
 
+  async getFamiliaById(id) {
+    try {
+      const familiaToGet = await doc(collection(db, 'familia'), id);
+      let familia = await getDoc(familiaToGet);
+      familia = { id: familia.id, data: familia.data() };
 
+      return familia;
+    } catch(error) {
+      const errorMessage = translateError(error.code);
+      Toastify({
+        text: `Erro: ${errorMessage}`,
+        duration: 3000,
+        close: true,
+        gravity: "bottom",
+        position: "right",
+        stopOnFocus: true,
+        style: {
+          background: "linear-gradient(to right, #c60b0b, #cd3544)",
+          fontFamily: ("Averia Libre", "sans-serif"),
+        },
+
+      }).showToast();
+    }
+  }
+
+  async updateFamilia(id, integranteEllp, nrIntegrantes, renda, nrComputadores, nrCelulares, acessoInternet) {
+    try {
+      onAuthStateChanged(auth, async (user) => {
+        const userUid = user.uid;
+        if(acessoInternet === "1") {
+          acessoInternet = true;
+        } else {
+          acessoInternet = false;
+        }
+
+        const familia = new Familia(integranteEllp, nrIntegrantes, renda, nrComputadores, nrCelulares, acessoInternet, userUid);
+        const familiaDoc = {
+          integrante_ellp: familia.integranteEllp,
+          nr_integrantes: familia.nrIntegrantes,
+          renda: familia.renda,
+          nr_computadores: familia.nrComputadores,
+          nr_celulares: familia.nrCelulares,
+          acesso_internet: familia.acessoInternet,
+          user_uid: familia.userUid
+        };
+  
+        await updateDoc(doc(db, 'familia', id), familiaDoc);
+        
+        Toastify({
+          text: "Dados atualizados com sucesso!",
+          duration: 3000,
+          close: true,
+          gravity: "bottom",
+          position: "right",
+          stopOnFocus: true,
+          style: {
+            background: "linear-gradient(to right, #06d455, #4bd17e)",
+            fontFamily: ("Averia Libre", "sans-serif"),
+          },
+      
+        }).showToast();
+        setTimeout(() => {
+          window.location.href = "./home.html";
+        }, 1500);
+      });
+
+    } catch(error) {
+      const errorMessage = translateError(error.code);
+      Toastify({
+        text: `Erro: ${errorMessage}`,
+        duration: 3000,
+        close: true,
+        gravity: "bottom",
+        position: "right",
+        stopOnFocus: true,
+        style: {
+          background: "linear-gradient(to right, #c60b0b, #cd3544)",
+          fontFamily: ("Averia Libre", "sans-serif"),
+        },
+
+      }).showToast();
+    }
+  }
+
+  async deleteFamilia(id) {
+    try {
+      const familiaToDelete = await doc(collection(db, 'familia'), id);
+      await deleteDoc(familiaToDelete);
+
+      Toastify({
+        text: "Vacina deletada com sucesso!",
+        duration: 3000,
+        close: true,
+        gravity: "bottom",
+        position: "right",
+        stopOnFocus: true,
+        style: {
+          background: "linear-gradient(to right, #06d455, #4bd17e)",
+          fontFamily: ("Averia Libre", "sans-serif"),
+        },
+      }).showToast();
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    } catch(error) {
+      const errorMessage = translateError(error.code);
+      Toastify({
+        text: `Erro: ${errorMessage}`,
+        duration: 3000,
+        close: true,
+        gravity: "bottom",
+        position: "right",
+        stopOnFocus: true,
+        style: {
+          background: "linear-gradient(to right, #c60b0b, #cd3544)",
+          fontFamily: ("Averia Libre", "sans-serif"),
+        },
+
+      }).showToast();
+    }
+  }
 }

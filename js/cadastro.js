@@ -10,15 +10,21 @@ let getAcessoInternet = '';
 
 const formCadastro = document.getElementById('form-cadastro');
 
+getRendaMensal.addEventListener('input', () => {
+  var rendaValue = getRendaMensal.value.replace(/[^0-9]/g, '');
+  var rendaBRLValue = (Number(rendaValue) / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  getRendaMensal.value = rendaBRLValue;
+})
+
 formCadastro.addEventListener('submit', async (event) => {
   event.preventDefault();
   try {
     getAcessoInternetOptions.forEach((op) => {
       if (op.checked) getAcessoInternet = op.value;
     });
+    const rendaFloatValue = parseFloat(getRendaMensal.value.replace(/[^\d,]/g, "").replace(",", "."));
     const familiaController = new FamiliaController();
-    let user = JSON.parse(localStorage.getItem('user'));
-    await familiaController.createFamilia(getIntegranteELLP.value, getNrIntegrantes.value, getRendaMensal.value, getNrComputadores.value, getNrCelulares.value, getAcessoInternet, user.uid);
+    await familiaController.createFamilia(getIntegranteELLP.value, getNrIntegrantes.value, rendaFloatValue, getNrComputadores.value, getNrCelulares.value, getAcessoInternet);
   } catch (error) {
     console.log(`Error: ${error}`);
   }
