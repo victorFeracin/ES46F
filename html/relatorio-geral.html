@@ -35,7 +35,7 @@
         <div id="filter-container">
           <label for="radioFilter">Ver por:</label>
           <div class="input-radio-container">
-            <label><input type="radio" name="radioFilter" value="1" onclick="changeFilter()"">Familia</label>
+            <label><input type="radio" name="radioFilter" value="1" id="filter-not-selected">Familia</label>
             <label><input type="radio" name="radioFilter" value="0" checked>Geral</label>
           </div>
         </div>
@@ -46,7 +46,7 @@
   </div>
 
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-  <script src="../js/relatorio-geral.js"></script>
+  <script type="module" src="../js/relatorio-geral.js"></script>
   <script type="module" src='../js/authentication.js'></script>
   <script type="module" src="../js/logout.js"></script>
 </body>

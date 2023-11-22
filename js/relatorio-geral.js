@@ -1,5 +1,7 @@
-const filter = document.getElementsByName('radioFilter');
+import FamiliaController from "../controllers/FamiliaController.js";
 
-const changeFilter = () => {
+const filter = document.getElementById('filter-not-selected');
+
+filter.addEventListener('click', () =>{
   window.location.href = 'relatorio.html';
-}
+});

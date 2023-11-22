@@ -4,8 +4,10 @@ const cardList = document.getElementById('card-list');
 const btnDeleteConfirm = document.getElementById('btn-delete-confirm');
 const familiaController = new FamiliaController();
 
+let familiaList = [];
+
 window.addEventListener('load', async () => {
-  const familiaList = await familiaController.getFamilias();
+  familiaList = await familiaController.getFamilias();
 
   if(familiaList.length > 0) {
     familiaList.map((familia) => {
