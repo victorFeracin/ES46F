@@ -204,7 +204,7 @@ export default class FamiliaController {
       await deleteDoc(familiaToDelete);
 
       Toastify({
-        text: "Vacina deletada com sucesso!",
+        text: "Deletado com sucesso",
         duration: 3000,
         close: true,
         gravity: "bottom",
