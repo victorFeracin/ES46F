@@ -430,5 +430,11 @@ header {
 
 .input-radio-container {
   display: flex;
+}
 
+/*RELATORIO GERAL*/
+
+canvas {
+  margin-bottom: 80px;
+  max-width: 850px;
 }
