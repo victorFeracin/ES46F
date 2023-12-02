@@ -4,6 +4,8 @@ const SALARIO_MINIMO = 1320.00;
 const chartNrIntegrantes = document.getElementById('chart-nr-integrantes');
 const chartRenda = document.getElementById('chart-renda');
 const chartNrComputadores = document.getElementById('chart-nr-computadores');
+const chartNrCelulares = document.getElementById('chart-nr-celulares');
+const chartAcessoInternet = document.getElementById('chart-acesso-internet');
 const filter = document.getElementById('filter-not-selected');
 const familiaController = new FamiliaController();
 
@@ -11,6 +13,8 @@ let familiaList = [];
 let nrIntegrantesList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 let rendaList = [0, 0, 0, 0, 0, 0, 0];
 let nrComputadoresList = [0, 0, 0, 0, 0, 0];
+let nrCelularesList = [0, 0, 0, 0, 0, 0]
+let acessoInternetList = [0, 0];
 
 filter.addEventListener('click', () =>{
   window.location.href = 'relatorio.html';
@@ -73,11 +77,35 @@ window.addEventListener('load', async () => {
     } else {
       nrComputadoresList[5]++;
     }
+
+    const numeroCelulares = parseInt(familia?.data?.nr_celulares, 10);
+    if (numeroCelulares === 0) {
+      nrCelularesList[0]++;
+    } else if (numeroCelulares === 1) {
+      nrCelularesList[1]++;
+    } else if (numeroCelulares === 2) {
+      nrCelularesList[2]++;
+    } else if (numeroCelulares === 3) {
+      nrCelularesList[3]++;
+    } else if (numeroCelulares === 4) {
+      nrCelularesList[4]++;
+    } else {
+      nrCelularesList[5]++;
+    }
+
+    const acessoInternet = familia?.data?.acesso_internet;
+    if (acessoInternet === "Sim") {
+      acessoInternetList[0]++;
+    } else {
+      acessoInternetList[1]++;
+    }
   });
 
   showNrIntegrantesChart();
   showRendaChart();
   showNrComputadoresChart();
+  showNrCelularesChart();
+  showAcessoInternetChart();
 });
 
 //NUMERO DE INTEGRANTES
@@ -87,18 +115,28 @@ const showNrIntegrantesChart = () => {
     data: {
       labels: ['1 integrante', '2 integrantes', '3 integrantes', '4 integrantes', '5 integrantes', '6 integrantes', '7 integrantes', '8 integrantes', '9 integrantes', '10 ou mais integrantes'],
       datasets: [{
-        label: 'Integrantes do ELLP',
+        label: 'Famílias',
         data: nrIntegrantesList,
         borderWidth: 1,
         backgroundColor: '#F68D2E'
       }]
     },
     options: {
+      scales: {
+        x: {
+          ticks: {
+            callback: function(value, index, values) {
+              return Number.isInteger(value) ? value : '';
+            }
+          }
+        }
+      },
+      indexAxis: 'y',
       beginAtZero: true,
       plugins: {
         title: {
           display: true,
-          text: 'Quantidade de integrantes da família por cada integrante do ELLP',
+          text: 'Quantidade de integrantes por família de cada integrante do ELLP',
         }
       },
     }
@@ -112,13 +150,22 @@ const showRendaChart = () => {
     data: {
       labels: ['Até 1/2 salário mínimo', '1/2 à 1 salário mínimo', '1 à 2 salários mínimos', '2 à 3 salários mínimos', '3 à 5 salários mínimos', '5 à 10 salários mínimos', 'Mais de 10 salários mínimos'],
       datasets: [{
-        label: 'Integrantes do ELLP',
+        label: 'Famílias',
         data: rendaList,
         borderWidth: 1,
         backgroundColor: '#007BCC'
       }]
     },
     options: {
+      scales: {
+        x: {
+          ticks: {
+            callback: function(value, index, values) {
+              return Number.isInteger(value) ? value : '';
+            }
+          }
+        }
+      },
       indexAxis: 'y',
       beginAtZero: true,
       plugins: {
@@ -138,18 +185,97 @@ const showNrComputadoresChart = () => {
     data: {
       labels: ['0 computadores', '1 computador', '2 computadores', '3 computadores', '4 computadores', '5 ou mais computadores'],
       datasets: [{
-        label: 'Integrantes do ELLP',
+        label: 'Famílias',
         data: nrComputadoresList,
         borderWidth: 1,
         backgroundColor: '#F68D2E'
       }]
     },
     options: {
+      scales: {
+        x: {
+          ticks: {
+            callback: function(value, index, values) {
+              return Number.isInteger(value) ? value : '';
+            }
+          }
+        }
+      },
+      indexAxis: 'y',
       beginAtZero: true,
       plugins: {
         title: {
           display: true,
-          text: 'Número de computadores da família por cada integrante do ELLP',
+          text: 'Número de computadores por família de cada integrante do ELLP',
+        }
+      },
+    }
+  });
+}
+
+//NUMERO DE CELULARES
+const showNrCelularesChart = () => {
+  new Chart(chartNrCelulares, {
+    type: 'bar',
+    data: {
+      labels: ['0 celulares', '1 celular', '2 celulares', '3 celulares', '4 celulares', '5 ou mais celulares'],
+      datasets: [{
+        label: 'Famílias',
+        data: nrCelularesList,
+        borderWidth: 1,
+        backgroundColor: '#007BCC'
+      }]
+    },
+    options: {
+      scales: {
+        x: {
+          ticks: {
+            callback: function(value, index, values) {
+              return Number.isInteger(value) ? value : '';
+            }
+          }
+        }
+      },
+      indexAxis: 'y',
+      beginAtZero: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Número de celulares por família de cada integrante do ELLP',
+        }
+      },
+    }
+  });
+}
+
+const showAcessoInternetChart = () => {
+  new Chart(chartAcessoInternet, {
+    type: 'bar',
+    data: {
+      labels: ['Possui acesso à internet', 'Não possui acesso à internet',],
+      datasets: [{
+        label: 'Famílias',
+        data: acessoInternetList,
+        borderWidth: 1,
+        backgroundColor: '#F68D2E'
+      }]
+    },
+    options: {
+      scales: {
+        x: {
+          ticks: {
+            callback: function(value, index, values) {
+              return Number.isInteger(value) ? value : '';
+            }
+          }
+        }
+      },
+      indexAxis: 'y',
+      beginAtZero: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Acesso à internet por cada família',
         }
       },
     }
